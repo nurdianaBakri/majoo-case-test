@@ -1,13 +1,10 @@
 
-<!-- Page Heading --> <h2 style="margin-top:0px">Kategori_produk <?php echo $button ?></h2>
+<!-- Page Heading --> <h2 style="margin-top:0px">Kategori Produk <?php echo $button ?></h2>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                </div>
+            <div class="col-md-4 text-center"> 
             </div>
             <div class="col-md-1 text-right">
             </div>

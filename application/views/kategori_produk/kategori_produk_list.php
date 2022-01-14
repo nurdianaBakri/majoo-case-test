@@ -1,11 +1,8 @@
  <div class="row" style="margin-bottom: 10px">
      <div class="col-md-4">
-         <h2 style="margin-top:0px">Kategori_produk List</h2>
+         <h2 style="margin-top:0px">Kategori Produk</h2>
      </div>
-     <div class="col-md-4 text-center">
-         <div style="margin-top: 4px" id="message">
-             <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-         </div>
+     <div class="col-md-4 text-center"> 
      </div>
      <div class="col-md-4 text-right">
          <?php echo anchor(site_url('kategori_produk/create'), 'Create', 'class="btn btn-primary"'); ?>

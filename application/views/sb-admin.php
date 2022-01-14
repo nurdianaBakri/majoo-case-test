@@ -30,15 +30,12 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
 
+    <!-- Select2 CSS -->
+    <link href="<?= base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-	
- <!-- Select2 CSS -->
- <link href="<?= base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet" />
- 
     <style>
     .dataTables_wrapper {
         min-height: 500px
@@ -57,10 +54,44 @@
         color: grey;
     }
     </style>
-
-
-
+    <?php  
+	$status = $this->session->userdata('status');
+ 
+	if($status=="1")
+	{
+		echo '
+		<script type="text/javascript"> 
+		$(document).ready(function() {
+			swal({
+				position: "top-end",
+				type: "success",
+				title: "'.$this->session->userdata('message').'",
+				showConfirmButton: false,
+				timer: 1500
+			}) ;  
+		}); 
+		</script>
+		'; 
+	}
+	else if($status=="0" || $status=="2")
+	{
+		echo '<script type="text/javascript"> 
+		$(document).ready(function() {
+			swal({
+				position: "top-end",
+				type: "error",
+				title: "'.$this->session->userdata('message').'",
+				showConfirmButton: false,
+				timer: 1500
+			}) ;  
+		}); 
+		</script>
+		';
+	}
+ 	?>
 </head>
+
+
 
 <body id="page-top">
 
@@ -96,7 +127,6 @@
                     <i class="fas fa-fw fa-user-md"></i>
                     <span>Product</span></a>
             </li>
-
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
@@ -173,14 +203,12 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <div class="card">
                         <div class="card-body">
                             <?php $this->load->view($content); ?>
 
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -208,7 +236,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
     <script src="https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap core JavaScript-->
@@ -228,33 +256,8 @@
     <!-- Page level custom scripts -->
     <script src="<?= base_url()."assets/sb-admin/" ?>js/demo/datatables-demo.js"></script>
 
-
-    <script src="<?php echo base_url()."/assets" ?>/ckeditor/ckeditor.js"></script>
-    <script src="<?php echo base_url()."/assets" ?>/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-    <script>
-    $(function() { 
-        // Replace the <textarea id="editor1"> with a CKEditor
-
-        // instance, using default configuration.
-
-        CKEDITOR.replace('editor1')
-
-        //bootstrap WYSIHTML5 - text editor
-
-        $('.textarea').wysihtml5()
-
-    })
-
-	$(document).ready(function() { 
-            $("#kd_kategori").select2();
-        });
-    </script> 
-
-<!-- Select2 JS -->
-<script src="<?= base_url() ?>assets/select2/dist/js/select2.min.js"></script>
- 
-
+    <!-- Select2 JS -->
+    <script src="<?= base_url() ?>assets/select2/dist/js/select2.min.js"></script>
 </body>
 
 </html>

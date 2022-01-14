@@ -3,16 +3,12 @@
          <h2 style="margin-top:0px">Product List</h2>
      </div>
      <div class="col-md-4 text-center">
-         <div style="margin-top: 4px" id="message">
-             <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-         </div>
+
      </div>
      <div class="col-md-4 text-right">
          <?php echo anchor(site_url('product/create'), 'Create', 'class="btn btn-primary"'); ?>
      </div>
  </div>
-
-
 
  <div class="table-responsive">
      <table class="table table-bordered table-striped" id="mytable">
@@ -27,11 +23,9 @@
          </thead>
 
      </table>
-
  </div>
 
 
- <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
  <script type="text/javascript">
 $(document).ready(function() {
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {

@@ -15,6 +15,18 @@ class Product_model extends CI_Model
         parent::__construct();
     }
 
+	function role_exists($key)
+		{
+			$this->db->where('nama',$key);
+			$query = $this->db->get('product');
+			if ($query->num_rows() > 0){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+
     // datatables
     function json() {
         $this->datatables->select('id_produk,nama,deskripsi,nm_kategori');
@@ -43,12 +55,12 @@ class Product_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_produk', $q);
-	$this->db->or_like('nama', $q);
-	$this->db->or_like('deskripsi', $q);
-	$this->db->or_like('kd_kategori', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('date', $q);
-	$this->db->from($this->table);
+		$this->db->or_like('nama', $q);
+		$this->db->or_like('deskripsi', $q);
+		$this->db->or_like('kd_kategori', $q);
+		$this->db->or_like('id_user', $q);
+		$this->db->or_like('date', $q);
+		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
