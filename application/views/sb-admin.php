@@ -34,6 +34,11 @@
     <!-- include summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+	
+ <!-- Select2 CSS -->
+ <link href="<?= base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet" />
+ 
     <style>
     .dataTables_wrapper {
         min-height: 500px
@@ -228,8 +233,7 @@
     <script src="<?php echo base_url()."/assets" ?>/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
     <script>
-    $(function() {
-
+    $(function() { 
         // Replace the <textarea id="editor1"> with a CKEditor
 
         // instance, using default configuration.
@@ -241,7 +245,15 @@
         $('.textarea').wysihtml5()
 
     })
-    </script>
+
+	$(document).ready(function() { 
+            $("#kd_kategori").select2();
+        });
+    </script> 
+
+<!-- Select2 JS -->
+<script src="<?= base_url() ?>assets/select2/dist/js/select2.min.js"></script>
+ 
 
 </body>
 
