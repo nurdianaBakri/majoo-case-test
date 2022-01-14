@@ -1,39 +1,38 @@
-  <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
-  <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
+ <div class="row" style="margin-bottom: 10px">
+     <div class="col-md-4">
+         <h2 style="margin-top:0px">Product List</h2>
+     </div>
+     <div class="col-md-4 text-center">
+         <div style="margin-top: 4px" id="message">
+             <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+         </div>
+     </div>
+     <div class="col-md-4 text-right">
+         <?php echo anchor(site_url('product/create'), 'Create', 'class="btn btn-primary"'); ?>
+     </div>
+ </div>
 
 
 
-  <div class="row" style="margin-bottom: 10px">
-      <div class="col-md-4">
-          <h2 style="margin-top:0px">Product List</h2>
-      </div>
-      <div class="col-md-4 text-center">
-          <div style="margin-top: 4px" id="message">
-              <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-          </div>
-      </div>
-      <div class="col-md-4 text-right">
-          <?php echo anchor(site_url('product/create'), 'Create', 'class="btn btn-primary"'); ?>
-      </div>
-  </div>
-  <table class="table table-bordered table-striped" id="mytable">
-      <thead>
-          <tr>
-              <th width="80px">No</th>
-              <th>Nama</th>
-              <th>Deskripsi</th>
-              <th>Kd Kategori</th>
-              <th width="200px">Action</th>
-          </tr>
-      </thead>
+ <div class="table-responsive">
+     <table class="table table-bordered table-striped" id="mytable">
+         <thead>
+             <tr>
+                 <th width="80px">No</th>
+                 <th>Nama</th>
+                 <th>Deskripsi</th>
+                 <th>Kd Kategori</th>
+                 <th width="200px">Action</th>
+             </tr>
+         </thead>
 
-  </table>
+     </table>
+
+ </div>
 
 
-  <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
-  <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
-  <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
-  <script type="text/javascript">
+ <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
+ <script type="text/javascript">
 $(document).ready(function() {
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
         return {
@@ -95,4 +94,4 @@ $(document).ready(function() {
         }
     });
 });
-  </script>
+ </script>

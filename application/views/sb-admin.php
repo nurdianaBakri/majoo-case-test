@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Penjadwalan</title>
+    <title>MINI POS MAJOO INDONESIA</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?= base_url()."assets/sb-admin/" ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url()."assets/sb-admin/" ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link
@@ -26,28 +27,34 @@
     <link href="<?= base_url()."assets/sb-admin/" ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
-	<link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"/>
-    <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"/>
- 
+    <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>" />
 
-	<style>
-            .dataTables_wrapper {
-                min-height: 500px
-            }
-            
-            .dataTables_processing {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 100%;
-                margin-left: -50%;
-                margin-top: -25px;
-                padding-top: 20px;
-                text-align: center;
-                font-size: 1.2em;
-                color:grey;
-            }
-        </style>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <style>
+    .dataTables_wrapper {
+        min-height: 500px
+    }
+
+    .dataTables_processing {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        margin-left: -50%;
+        margin-top: -25px;
+        padding-top: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        color: grey;
+    }
+    </style>
+
+
+
 </head>
 
 <body id="page-top">
@@ -61,20 +68,13 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url()."Home" ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-mart"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Penjadwalan</div>
+                <div class="sidebar-brand-text mx-3">Mini POS</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()."Home" ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -83,14 +83,22 @@
             <div class="sidebar-heading">
                 Menu
             </div>
- 
+
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url()."Product" ?>">
                     <i class="fas fa-fw fa-user-md"></i>
                     <span>Product</span></a>
-            </li> 
+            </li>
+
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url()."Kategori_produk" ?>">
+                    <i class="fas fa-fw fa-user-md"></i>
+                    <span>Master Kategori Produk</span></a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -103,8 +111,8 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
- 
- 
+
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -131,8 +139,8 @@
                                 </form>
                             </div>
                         </li>
- 
- 
+
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -161,12 +169,12 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-				<div class="card">
-					<div class="card-body">
-                    	<?php $this->load->view($content); ?>
-						
-					</div>
-				</div> 
+                    <div class="card">
+                        <div class="card-body">
+                            <?php $this->load->view($content); ?>
+
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -195,9 +203,9 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js"></script>
- 
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url()."assets/sb-admin/" ?>vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url()."assets/sb-admin/" ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -214,7 +222,27 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url()."assets/sb-admin/" ?>js/demo/datatables-demo.js"></script>
- 
+
+
+    <script src="<?php echo base_url()."/assets" ?>/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo base_url()."/assets" ?>/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+    <script>
+    $(function() {
+
+        // Replace the <textarea id="editor1"> with a CKEditor
+
+        // instance, using default configuration.
+
+        CKEDITOR.replace('editor1')
+
+        //bootstrap WYSIHTML5 - text editor
+
+        $('.textarea').wysihtml5()
+
+    })
+    </script>
+
 </body>
 
 </html>
