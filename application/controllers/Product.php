@@ -91,6 +91,9 @@ class Product extends CI_Controller
 			{
 				$this->session->set_flashdata('message', 'Proses tambah produk gagal, karena nama produk sudah ada');
 				$this->session->set_flashdata('status', '2');  
+
+				redirect(site_url('product'));
+
 			}
 			else
 			{
@@ -108,8 +111,34 @@ class Product extends CI_Controller
 				$this->Product_model->insert($data);
 				$this->session->set_flashdata('message', 'Berhasil menambah produk');
 				$this->session->set_flashdata('status', '1');
+
+				$id_produk = $this->db->query("SELECT * FROM  product where nama='$nama'")->row()->id_produk;
+
+				redirect(site_url('product/upload_gambar/'.$id_produk));
+
             } 
 
+        }
+    }
+
+
+	public function upload_gambar($id) 
+    {
+        $row = $this->Product_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'content' => 'product/product_form_image',  
+                'action' => site_url('product/update_action_update_image'),
+				'id_produk' => set_value('id_produk', $row->id_produk),
+				'nama' => set_value('nama', $row->nama),
+			);
+ 
+            $this->load->view('sb-admin', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Data Tidak di temukan');
+            $this->session->set_flashdata('status', '0');
             redirect(site_url('product'));
         }
     }
@@ -128,8 +157,7 @@ class Product extends CI_Controller
 				'deskripsi' => set_value('deskripsi', $row->deskripsi),
 				'kd_kategori' => set_value('kd_kategori', $row->kd_kategori),
 				'id_user' => set_value('id_user', $row->id_user),
-				'harga' => set_value('harga', $row->harga),
-				'gambar' => set_value('gambar', $row->gambar),
+				'harga' => set_value('harga', $row->harga), 
 				'date' => set_value('date', $row->date),
 				'kat' => $this->db->get('kategori_produk')->result(),
 			);
@@ -171,8 +199,7 @@ class Product extends CI_Controller
 					'deskripsi' => $this->input->post('deskripsi',TRUE),
 					'kd_kategori' => $this->input->post('kd_kategori',TRUE),
 					'id_user' => $this->input->post('id_user',TRUE),
-					'harga' => $this->input->post('harga',TRUE),
-					'gambar' => $this->input->post('gambar',TRUE),
+					'harga' => $this->input->post('harga',TRUE), 
 					'date' => $this->input->post('date',TRUE),
 				);
 

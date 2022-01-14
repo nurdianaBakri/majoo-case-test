@@ -41,15 +41,8 @@
                 <label for="int">Harga <?php echo form_error('harga') ?></label>
 				<input type="number" class="form-control" name="harga" id="harga" placeholder="harga"
                     value="<?php echo $harga; ?>" />
-            </div>
-
-			<div class="form-group">
-                <label for="int">Gambar <?php echo form_error('gambar') ?></label>
-				<input type="file" class="form-control" name="gambar" id="gambar" placeholder="gambar"
-                    value="<?php echo $gambar; ?>" />
-            </div>
-
-
+            </div> 
+			
             <input type="hidden" class="form-control" name="id_user" id="id_user" placeholder="Id User"
                 value="<?php echo $id_user; ?>" />
 
