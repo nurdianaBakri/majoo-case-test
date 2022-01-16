@@ -34,7 +34,7 @@
     <link href="<?= base_url() ?>assets/select2/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> 
 
     <style>
     .dataTables_wrapper {

@@ -17,7 +17,7 @@
                  <th width="80px">No</th>
                  <th>Nama</th>
                  <th>Deskripsi</th>
-                 <th>Kd Kategori</th>
+                 <th>Kategori</th>
                  <th width="200px">Action</th>
              </tr>
          </thead>

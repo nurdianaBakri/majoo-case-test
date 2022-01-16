@@ -30,16 +30,23 @@ class Product extends CI_Controller
     {
         $row = $this->Product_model->get_by_id($id);
         if ($row) {
+
+			//get nama kategori 
+			$this->db->where('kd_kategori', $row->kd_kategori);
+			$nm_kategori = $this->db->get('kategori_produk')->row()->nm_kategori;
+
             $data = array(
-			'id_produk' => $row->id_produk,
-			'nama' => $row->nama,
-			'deskripsi' => $row->deskripsi,
-			'kd_kategori' => $row->kd_kategori,
-			'id_user' => $row->id_user,
-			'harga' => $row->harga,
-			'gambar' => $row->gambar,
-			'date' => $row->date,
-	    );
+				'id_produk' => $row->id_produk,
+				'nama' => $row->nama,
+				'deskripsi' => $row->deskripsi,
+				'kd_kategori' => $row->kd_kategori,
+				'id_user' => $row->id_user,
+				'harga' => $row->harga,
+				'gambar' => $row->gambar,
+				'nm_kategori' => $nm_kategori,
+				'date' => $row->date,
+				'gambar'=>$this->Product_model->get_detail_gambar($row->id_produk)
+			);
             $data['content'] = 'product/product_read';
 
             $this->load->view('sb-admin', $data);
@@ -142,6 +149,62 @@ class Product extends CI_Controller
             redirect(site_url('product'));
         }
     }
+
+
+	// File upload
+	public function fileUpload(){
+
+		$request = $this->input->post('request',TRUE);
+
+		if ($request=='add') 
+		{
+			if (!empty($_FILES['file']['name'])) {
+		
+				// Set preference
+					$config['upload_path'] = 'uploads/';
+					$config['allowed_types'] = 'jpg|jpeg|png|gif';
+					$config['max_size'] = '1024'; // max_size in kb
+					$config['file_name'] = $_FILES['file']['name'];
+			
+					//Load upload library
+					$this->load->library('upload', $config);
+			
+					// File upload
+					if ($this->upload->do_upload('file')) {
+						// Get data about the file
+						$uploadData = $this->upload->data();
+	
+						//masukkan data ke database 
+						//cek apakah 
+						$data = array(
+							'gambar' => $uploadData['file_name'],
+							'id_product' => $this->input->post('id_produk',TRUE), 
+							'date' => date('Y-m-d H:i:s'),
+						);
+	
+						return $this->Product_model->insert_detail($data); 
+					}
+				}
+		}
+		else if ($request=='delete') {
+			$name = $this->input->post('name',TRUE); 
+			$this->load->helper("file"); 
+			$path = 'uploads/'.$name; 
+
+			$hapus  = unlink($path);  
+
+			//hapus data di table
+
+		}
+		else{ 
+			$id_product = $this->input->post('id_produk',TRUE); 
+			$data = $this->Product_model->get_detail_gambar($id_product); 
+
+			// var_dump($data);
+			echo json_decode($data);
+		}
+    }
+ 
     
     public function update($id) 
     {
@@ -160,6 +223,7 @@ class Product extends CI_Controller
 				'harga' => set_value('harga', $row->harga), 
 				'date' => set_value('date', $row->date),
 				'kat' => $this->db->get('kategori_produk')->result(),
+				'gambar'=>$this->Product_model->get_detail_gambar($row->id_produk)
 			);
  
             $this->load->view('sb-admin', $data);
@@ -172,27 +236,20 @@ class Product extends CI_Controller
     
     public function update_action() 
     {
-        $this->_rules();
-
+        $this->_rules(); 
+		$id_produk = $this->input->post('id_produk', TRUE);  
         if ($this->form_validation->run() == FALSE) {
 
 			$this->session->set_flashdata('message', 'Proses update produk gagal');
             $this->session->set_flashdata('status', '0'); 
 
-            $this->update($this->input->post('id_produk', TRUE));
+            $this->update($id_produk);
         } else {
 
 			//cek nama yang duplikat
 			$nama = $this->input->post('nama',TRUE);
-			$cek = $this->db->query("SELECT * FROM  product where nama='$nama'")->num_rows();
+			$cek = $this->db->query("SELECT * FROM  product where nama='$nama' AND id_produk='$id_produk'")->num_rows();
 			if ($cek>0) 
-			{
-				$this->session->set_flashdata('message', 'Proses update produk gagal, karena nama produk sudah ada');
-				$this->session->set_flashdata('status', '2'); 
-
-				$this->update($this->input->post('id_produk', TRUE));
-			}
-			else
 			{
 				$data = array(
 					'nama' => $this->input->post('nama',TRUE),
@@ -203,12 +260,19 @@ class Product extends CI_Controller
 					'date' => $this->input->post('date',TRUE),
 				);
 
-				$this->Product_model->update($this->input->post('id_produk', TRUE), $data); 
+				$this->Product_model->update($id_produk, $data); 
 				$this->session->set_flashdata('message', 'Proses update produk berhasil');
 				$this->session->set_flashdata('status', '1'); 
 
-				redirect(site_url('product'));
-			} 
+				redirect(site_url('product')); 
+			}
+			else
+			{
+				$this->session->set_flashdata('message', 'Proses update produk gagal, karena nama produk sudah ada');
+				$this->session->set_flashdata('status', '2'); 
+
+				$this->update($id_produk);
+			}
         }
     }
     

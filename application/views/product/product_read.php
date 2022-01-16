@@ -1,10 +1,42 @@
+<h2 style="margin-top:0px">Detail Product</h2>
+<table class="table">
+    <tr>
+        <td>Nama</td>
+        <td><?= $nama; ?></td>
+    </tr>
+    <tr>
+        <td>Deskripsi</td>
+        <td><?= $deskripsi; ?></td>
+    </tr>
+    <tr>
+        <td>Kategori</td>
+        <td><?= $nm_kategori;  ?></td>
+    </tr> 
+    <tr>
+        <td>Tanggal Update</td>
+        <td><?= $date; ?></td>
+    </tr>
+	<tr>
+        <td>Harga</td>
+        <td><?= number_format($harga,2); ?></td>
+    </tr>
 
-        <h2 style="margin-top:0px">Product Read</h2>
-        <table class="table">
-	    <tr><td>Nama</td><td><?php echo $nama; ?></td></tr>
-	    <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
-	    <tr><td>Kd Kategori</td><td><?php echo $kd_kategori; ?></td></tr>
-	    <tr><td>Id User</td><td><?php echo $id_user; ?></td></tr>
-	    <tr><td>Date</td><td><?php echo $date; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('product') ?>" class="btn btn-default">Cancel</a></td></tr>
-	</table> 
+	<?php
+	foreach ($gambar as $key ) { ?> 
+	<tr>
+        <td></td>
+        <td>
+			<img src="<?= base_url()."uploads/".$key->gambar ?>"   width="200" height="auto"> 
+		</td>
+    </tr> 
+	<?php } ?>
+
+
+    <tr>
+        <td></td>
+        <td><a href="<?= site_url('product') ?>" class="btn btn-warning">Cancel</a></td>
+    </tr>
+
+
+	
+</table>
