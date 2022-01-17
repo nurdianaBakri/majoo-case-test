@@ -11,7 +11,11 @@ class Kategori_produk extends CI_Controller
         $this->load->model('Kategori_produk_model');
         $this->load->library('form_validation');        
 		$this->load->library('datatables');
+        $this->logged_in();  
+        
     }
+
+
 
     public function index()
     {
@@ -21,6 +25,12 @@ class Kategori_produk extends CI_Controller
         );
         $this->load->view('sb-admin', $data);
     } 
+
+     private function logged_in() { 
+        if($this->session->userdata('authenticated')!=true) {
+            redirect('Welcome');
+        }
+    }  
     
     public function json() {
         header('Content-Type: application/json');

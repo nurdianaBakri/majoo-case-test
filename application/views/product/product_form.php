@@ -1,8 +1,4 @@
  
- <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-
- 
  <h2 style="margin-top:0px"><?php echo $button ?> Product </h2>
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -32,34 +28,47 @@
                  <textarea id="editor1" class="form-control" name="deskripsi" rows="10" cols="80"
                      required><?php echo $deskripsi; ?></textarea>
              </div>
-             <div class="form-group">
-                 <label for="int">Kategori <?php echo form_error('kategori') ?></label>
-                 <select class="form-control" name="kd_kategori" id="kd_kategori" placeholder="kd_kategori">
-                     <?php  
-						foreach ($kat as $key ) { ?>
-                     <option value='<?= $key->kd_kategori ?>'
-                         <?php if($key->kd_kategori==$kd_kategori){ echo "selected"; } ?>><?= $key->nm_kategori ?>
-                     </option>
-                     <?php } ?>
-                 </select>
-             </div>
 
-             <div class="form-group">
-                 <label for="int">Harga <?php echo form_error('harga') ?></label>
-                 <input type="number" class="form-control" name="harga" id="harga" placeholder="harga"
-                     value="<?php echo $harga; ?>" />
-             </div> 
+             <div class="row">
+                 <div class="col-md-4">
+                     
+                     <div class="form-group">
+                         <label for="int">Kategori <?php echo form_error('kategori') ?></label>
+                         <select class="form-control" name="kd_kategori" id="kd_kategori" placeholder="kd_kategori">
+                             <?php  
+                                foreach ($kat as $key ) { ?>
+                             <option value='<?= $key->kd_kategori ?>'
+                                 <?php if($key->kd_kategori==$kd_kategori){ echo "selected"; } ?>><?= $key->nm_kategori ?>
+                             </option>
+                             <?php } ?>
+                         </select>
+                     </div>
+
+                 </div>
+                 <div class="col-md-4">
+                     <div class="form-group">
+                         <label for="int">Harga <?php echo form_error('harga') ?></label>
+                         <input type="number" class="form-control" name="harga" id="harga" placeholder="harga"
+                             value="<?php echo $harga; ?>" />
+                     </div> 
+                 </div>
+                 <div class="col-md-4">
+                     <div class="form-group">
+                         <label for="int">Gambar <?php echo form_error('gambar') ?></label>
+                         <input type="file" class="form-control" name="gambar" id="gambar" placeholder="gambar" required/>
+                     </div> 
+                 </div>
+
+             </div>
+ 
+
              <input type="hidden" class="form-control" name="id_user" id="id_user" placeholder="Id User"
                  value="<?php echo $id_user; ?>" />
              <input type="hidden" name="id_produk" value="<?php echo $id_produk; ?>" id="id_produk" />
              <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
              <a href="<?php echo site_url('product') ?>" class="btn btn-warning">Cancel</a>
          </form>
-
-		<form action="uploadFile.php" class="dropzone" >  
-
-		</form> 
-
+ 
 		 <!-- <table class="table">
                      <?php
 					foreach ($gambar as $key ) { ?>

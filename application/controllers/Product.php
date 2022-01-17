@@ -11,7 +11,16 @@ class Product extends CI_Controller
         $this->load->model('Product_model');
         $this->load->library('form_validation');        
 		$this->load->library('datatables');
+        $this->logged_in();  
+
     }
+ 
+    private function logged_in() { 
+        if($this->session->userdata('authenticated')!=true) {
+            redirect('Welcome');
+        }
+    }  
+
 
     public function index()
     { 
@@ -68,8 +77,8 @@ class Product extends CI_Controller
 			'kd_kategori' => set_value('kd_kategori'),
 			'id_user' => set_value('id_user'),
 			'date' => set_value('date'),
-			'harga' => set_value('harga'),
-			'gambar' => set_value('gambar'),
+			'harga' => set_value('harga'), 
+			'gambar' => set_value('gambar'), 
 			'kat' => $this->db->get('kategori_produk')->result(), 
 		);
         $this->load->view('sb-admin', $data);
@@ -104,24 +113,46 @@ class Product extends CI_Controller
 			}
 			else
 			{
-				//cek apakah 
-				$data = array(
-					'nama' => $this->input->post('nama',TRUE),
-					'deskripsi' => $this->input->post('deskripsi',TRUE),
-					'kd_kategori' => $this->input->post('kd_kategori',TRUE),
-					'id_user' => $this->input->post('id_user',TRUE),
-					'harga' => $this->input->post('harga',TRUE),
-					'gambar' => $this->input->post('gambar',TRUE),
-					'date' => date('Y-m-d H:i:s'),
-				);
 
-				$this->Product_model->insert($data);
-				$this->session->set_flashdata('message', 'Berhasil menambah produk');
-				$this->session->set_flashdata('status', '1');
+				if (!empty($_FILES['gambar']['name'])) {
+		
+				// Set preference
+					$config['upload_path'] = 'uploads/';
+					$config['allowed_types'] = 'jpg|jpeg|png|gif';
+					$config['max_size'] = '1024'; // max_size in kb
+					$config['file_name'] = $_FILES['gambar']['name'];
+			
+					//Load upload library
+					$this->load->library('upload', $config);
+			
+					// File upload
+					if ($this->upload->do_upload('gambar')) {
+						// Get data about the file
+						$uploadData = $this->upload->data();
+						$nama_gambar = $uploadData['file_name'];
+	
+						//masukkan data ke database 
+						//cek apakah 
+						$data = array(
+							'nama' => $this->input->post('nama',TRUE),
+							'deskripsi' => $this->input->post('deskripsi',TRUE),
+							'kd_kategori' => $this->input->post('kd_kategori',TRUE),
+							'id_user' => $this->input->post('id_user',TRUE),
+							'harga' => $this->input->post('harga',TRUE), 
+							'gambar' => $this->input->post('gambar',TRUE), 
+							'date' => date('Y-m-d H:i:s'),
+						);
 
-				$id_produk = $this->db->query("SELECT * FROM  product where nama='$nama'")->row()->id_produk;
+						$this->Product_model->insert($data);
+						$this->session->set_flashdata('message', 'Berhasil menambah produk');
+						$this->session->set_flashdata('status', '1');
 
-				redirect(site_url('product/upload_gambar/'.$id_produk));
+						$id_produk = $this->db->query("SELECT * FROM  product where nama='$nama'")->row()->id_produk;
+
+						redirect(site_url('product/upload_gambar/'.$id_produk));
+						 
+					}
+				} 	
 
             } 
 
@@ -301,6 +332,12 @@ class Product extends CI_Controller
 	$this->form_validation->set_rules('harga', 'harga', 'trim|required');
 	// $this->form_validation->set_rules('gambar', 'gambar', 'trim|required');
 	$this->form_validation->set_rules('kd_kategori', 'kd kategori', 'trim|required');
+
+	if (empty($_FILES['gambar']['name']))
+	{
+	    $this->form_validation->set_rules('gambar', 'Document', 'required');
+	}
+
  
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     } 
