@@ -1,21 +1,10 @@
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
-<h2 style="margin-top:0px">Upload Image Product </h2>
+<h2 style="margin-top:0px">Upload gambar Product </h2>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                </div>
-                <div class="col-md-1 text-right">
-                </div>
-                <div class="col-md-3 text-right">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="card-header py-3"> </div>
     <div class="card-body">
 
 	<form action="<?= base_url('Product/fileUpload') ?>" enctype="multipart/form-data" class="dropzone" id="image-upload">
@@ -27,7 +16,7 @@
                 value="<?php echo $id_produk; ?>" />
 
 			<div> 
-			<h3>Upload Multiple Image By Click On Box</h3> 
+			<h3>Drag gambar kesini untuk mengunggah foto produk</h3> 
 			</div> 
 		</form> 
 		<a href="<?php echo site_url('product') ?>" class="btn btn-success">Selesai</a>

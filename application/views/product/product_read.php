@@ -20,21 +20,16 @@
         <td>Harga</td>
         <td><?= number_format($harga,2); ?></td>
     </tr>
-
-	<?php
-	foreach ($gambar as $key ) { ?> 
+ 
 	<tr>
         <td></td>
         <td>
-			<img src="<?= base_url()."uploads/".$key->gambar ?>"   width="200" height="auto"> 
+			<img src="<?= base_url()."uploads/".$gambar ?>"   width="200" height="auto"> 
 		</td>
-    </tr> 
-	<?php } ?>
-
-
+    </tr>   
     <tr>
         <td></td>
-        <td><a href="<?= site_url('product') ?>" class="btn btn-warning">Cancel</a></td>
+        <td><a href="<?= site_url('product') ?>" class="btn btn-warning">Kembali</a></td>
     </tr>
 
 
