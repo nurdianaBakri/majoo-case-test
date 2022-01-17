@@ -193,21 +193,21 @@ class Product extends CI_Controller
 				}
 			}
 		}
-		else if ($request=='delete') {
-			$name = $this->input->post('name',TRUE); 
-			$this->load->helper("file"); 
-			$path = 'uploads/'.$name; 
+		// else if ($request=='delete') {
+		// 	$name = $this->input->post('name',TRUE); 
+		// 	$this->load->helper("file"); 
+		// 	$path = 'uploads/'.$name; 
 
-			$hapus  = unlink($path);   
-			//hapus data di table 
-		}
-		else{ 
-			$id_product = $this->input->post('id_produk',TRUE); 
-			$data = $this->Product_model->get_detail_gambar($id_product); 
+		// 	$hapus  = unlink($path);   
+		// 	//hapus data di table 
+		// }
+		// else{ 
+		// 	$id_product = $this->input->post('id_produk',TRUE); 
+		// 	$data = $this->Product_model->get_detail_gambar($id_product); 
 
-			// var_dump($data);
-			echo json_decode($data);
-		}
+		// 	// var_dump($data);
+		// 	echo json_decode($data);
+		// }
     }
  
     

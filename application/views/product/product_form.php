@@ -98,12 +98,12 @@
 
      Dropzone.autoDiscover = false;
      var myDropzone = new Dropzone(".dropzone", {
-         acceptedFiles: ".jpg",
+         acceptedFiles: ".png",
          maxFilesize: 1, // MB
          // addRemoveLinks: true, 
          renameFile: function(file) {
              console.log(file);
-             let newName = new Date().getTime() + '_' + '.jpg';
+             let newName = new Date().getTime() + '_' + '.png';
              console.log(newName);
              return newName;
          },

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2022 at 05:46 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Waktu pembuatan: 17 Jan 2022 pada 09.03
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori_produk`
+-- Struktur dari tabel `kategori_produk`
 --
 
 CREATE TABLE `kategori_produk` (
@@ -33,7 +34,7 @@ CREATE TABLE `kategori_produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `kategori_produk`
+-- Dumping data untuk tabel `kategori_produk`
 --
 
 INSERT INTO `kategori_produk` (`kd_kategori`, `nm_kategori`) VALUES
@@ -43,17 +44,18 @@ INSERT INTO `kategori_produk` (`kd_kategori`, `nm_kategori`) VALUES
 ('ca2b3fd6-7509-11ec-90d6-0242ac120003', 'Dekstop');
 
 --
--- Triggers `kategori_produk`
+-- Trigger `kategori_produk`
 --
 DELIMITER $$
 CREATE TRIGGER `before_insert_kategori` BEFORE INSERT ON `kategori_produk` FOR EACH ROW SET new.kd_kategori = uuid()
+;
 $$
 DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log_activity`
+-- Struktur dari tabel `log_activity`
 --
 
 CREATE TABLE `log_activity` (
@@ -68,7 +70,7 @@ CREATE TABLE `log_activity` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struktur dari tabel `product`
 --
 
 CREATE TABLE `product` (
@@ -83,24 +85,28 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `product`
+-- Dumping data untuk tabel `product`
 --
 
 INSERT INTO `product` (`nama`, `deskripsi`, `kd_kategori`, `id_user`, `date`, `id_produk`, `harga`, `gambar`) VALUES
-('Majo Pro', '<div>Overview</div>\r\n\r\n<p>Bootstrap’s form controls expand on <a href=\"https://getbootstrap.com/docs/4.0/content/reboot/#forms\">our Rebooted form styles</a> with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</p>\r\n\r\n<p>Be sure to use an appropriate <code>type</code> attribute on all inputs (e.g., <code>email</code> for email address or <code>number</code> for numerical information) to take advantage of newer input controls like email verification, number selection, and more.</p>\r\n\r\n<p>Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more.</p>', '7f345a94-7509-11ec-90d6-0242ac120003', 0, '2022-01-16 08:33:36', 'ae1a44a6-76e1-11ec-9d0d-cc52af813725', 2700000, '');
+('Majo Advance', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', '8bbf7c76-7509-11ec-90d6-0242ac120003', 0, '2022-01-17 00:43:36', '292c42ef-7769-11ec-a087-74852a1cb96f', 2700000, '1642405503264_.png'),
+('Majoo Lifestyle', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '93403198-7509-11ec-90d6-0242ac120003', 0, '2022-01-17 00:45:50', '791d204e-7769-11ec-a087-74852a1cb96f', 2700000, '1642405558096_.png'),
+('Majoo Dekstop', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', 'ca2b3fd6-7509-11ec-90d6-0242ac120003', 0, '2022-01-17 07:57:03', '8ed1ebfb-7769-11ec-a087-74852a1cb96f', 2700000, '1642405600009_.png'),
+('Majo Pro', '<div>Overview</div>\r\n\r\n<p>Bootstrap’s form controls expand on <a href=\"https://getbootstrap.com/docs/4.0/content/reboot/#forms\">our Rebooted form styles</a> with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</p>\r\n\r\n<p>Be sure to use an appropriate <code>type</code> attribute on all inputs (e.g., <code>email</code> for email address or <code>number</code> for numerical information) to take advantage of newer input controls like email verification, number selection, and more.</p>\r\n\r\n<p>Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more.</p>', '7f345a94-7509-11ec-90d6-0242ac120003', 0, '2022-01-16 08:33:36', 'ae1a44a6-76e1-11ec-9d0d-cc52af813725', 2700000, '1642405658289_.png');
 
 --
--- Triggers `product`
+-- Trigger `product`
 --
 DELIMITER $$
 CREATE TRIGGER `before_insert_mytable` BEFORE INSERT ON `product` FOR EACH ROW SET new.id_produk = uuid()
+;
 $$
 DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_login`
+-- Struktur dari tabel `user_login`
 --
 
 CREATE TABLE `user_login` (
@@ -112,7 +118,7 @@ CREATE TABLE `user_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `user_login`
+-- Dumping data untuk tabel `user_login`
 --
 
 INSERT INTO `user_login` (`id`, `username`, `password`, `role`, `nama`) VALUES
@@ -123,41 +129,41 @@ INSERT INTO `user_login` (`id`, `username`, `password`, `role`, `nama`) VALUES
 --
 
 --
--- Indexes for table `kategori_produk`
+-- Indeks untuk tabel `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
   ADD PRIMARY KEY (`kd_kategori`) USING BTREE;
 
 --
--- Indexes for table `log_activity`
+-- Indeks untuk tabel `log_activity`
 --
 ALTER TABLE `log_activity`
   ADD PRIMARY KEY (`id_log`) USING BTREE;
 
 --
--- Indexes for table `product`
+-- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id_produk`,`nama`);
 
 --
--- Indexes for table `user_login`
+-- Indeks untuk tabel `user_login`
 --
 ALTER TABLE `user_login`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `log_activity`
+-- AUTO_INCREMENT untuk tabel `log_activity`
 --
 ALTER TABLE `log_activity`
   MODIFY `id_log` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
--- AUTO_INCREMENT for table `user_login`
+-- AUTO_INCREMENT untuk tabel `user_login`
 --
 ALTER TABLE `user_login`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
