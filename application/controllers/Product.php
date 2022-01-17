@@ -117,7 +117,7 @@ class Product extends CI_Controller
 					'nama' => $this->input->post('nama',TRUE),
 					'deskripsi' => $this->input->post('deskripsi',TRUE),
 					'kd_kategori' => $this->input->post('kd_kategori',TRUE),
-					'id_user' => $this->input->post('id_user',TRUE),
+					'id_user' => $this->session->userdata('id'),
 					'harga' => $this->input->post('harga',TRUE),  
 					'date' => date('Y-m-d H:i:s'),
 				);
@@ -260,7 +260,7 @@ class Product extends CI_Controller
 					'nama' => $this->input->post('nama',TRUE),
 					'deskripsi' => $this->input->post('deskripsi',TRUE),
 					'kd_kategori' => $this->input->post('kd_kategori',TRUE),
-					'id_user' => $this->input->post('id_user',TRUE),
+					'id_user' => $this->session->userdata('id'),
 					'harga' => $this->input->post('harga',TRUE), 
 					'date' => $this->input->post('date',TRUE),
 				);

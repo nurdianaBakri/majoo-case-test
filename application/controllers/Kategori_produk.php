@@ -42,8 +42,8 @@ class Kategori_produk extends CI_Controller
         $row = $this->Kategori_produk_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'kd_kategori' => $row->kd_kategori,
-		'nm_kategori' => $row->nm_kategori,
+			'kd_kategori' => $row->kd_kategori,
+			'nm_kategori' => $row->nm_kategori,
 	    );
             $data['content'] = 'kategori_produk/kategori_produk_read';
 
@@ -60,8 +60,8 @@ class Kategori_produk extends CI_Controller
             'button' => 'Create',
             'content' => 'kategori_produk/kategori_produk_form', 
             'action' => site_url('kategori_produk/create_action'),
-	    'kd_kategori' => set_value('kd_kategori'),
-	    'nm_kategori' => set_value('nm_kategori'),
+			'kd_kategori' => set_value('kd_kategori'),
+			'nm_kategori' => set_value('nm_kategori'),
 	);
         $this->load->view('sb-admin', $data);
     }
@@ -88,6 +88,8 @@ class Kategori_produk extends CI_Controller
 			else{
 				$data = array(
 					'nm_kategori' => $this->input->post('nm_kategori',TRUE),
+					'id_user' => $this->session->userdata('id'),  
+					'date' => date('Y-m-d H:i:s'), 
 				);
 
 				$this->Kategori_produk_model->insert($data);
@@ -110,6 +112,7 @@ class Kategori_produk extends CI_Controller
 				'action' => site_url('kategori_produk/update_action'),
 				'kd_kategori' => set_value('kd_kategori', $row->kd_kategori),
 				'nm_kategori' => set_value('nm_kategori', $row->nm_kategori),
+				'date' => date('Y-m-d H:i:s'), 
 			); 
 
 			$this->load->view('sb-admin', $data);
@@ -143,6 +146,7 @@ class Kategori_produk extends CI_Controller
 
 				$data = array(
 					'nm_kategori' => $this->input->post('nm_kategori',TRUE),
+					'id_user' => $this->session->userdata('id'), 
 				);
 
 				$this->Kategori_produk_model->update($this->input->post('kd_kategori', TRUE), $data);
